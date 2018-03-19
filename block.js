@@ -28,8 +28,12 @@ class Block {
 		return new this(timestamp, lastHash, hash, data);
 	}
 
-	static hash(timestamp, lastHash, data){
-		return SHA256(`${timestamp}${lastHash}${data}`).toString();
+	static hash(timestamp, previousHash, data){
+		return SHA256(`${timestamp}${previousHash}${data}`).toString();
+	}
+
+	static blockHash(block) {
+		return hash(block.timestamp, block.previousHash, block.data);
 	}
 }
 
